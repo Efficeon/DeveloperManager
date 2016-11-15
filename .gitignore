@@ -1,0 +1,15 @@
+# Created by .ignore support plugin (hsz.mobi)
+Будет удалено .gitignore
+Будет удалено .idea/
+Будет удалено DeveloperManager.iml
+Будет удалено lib/
+Будет удалено out/
+Будет удалено pom.xml
+Будет удалено src/
+Будет удалено target/
+Будет удалено web/
+
+.idea/*
+out/*
+target/*
+
