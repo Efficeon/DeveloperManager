@@ -35,14 +35,14 @@ public class Project{
     public void setName(String name) {
         this.name = name;
     }
-/*
+
     public Set<Developer> getDevelopers() {
         return developers;
     }
 
     public void setDevelopers(Set<Developer> developers) {
         this.developers = developers;
-    }*/
+    }
 
     @Override
     public String toString() {

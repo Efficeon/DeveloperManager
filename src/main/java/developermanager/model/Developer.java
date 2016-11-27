@@ -66,7 +66,7 @@ public class Developer {
     public void setExperience(int experience) {
         this.experience = experience;
     }
-/*
+
     public Set<Project> getProjects() {
         return projects;
     }
@@ -74,7 +74,7 @@ public class Developer {
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
     }
-*/
+
     @Override
     public String toString() {
         return "Developer{" +
