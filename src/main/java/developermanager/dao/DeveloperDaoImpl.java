@@ -1,6 +1,6 @@
-package dao;
+package developermanager.dao;
 
-import model.Developer;
+import developermanager.model.Developer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
 
 @Repository
 public class DeveloperDaoImpl implements DeveloperDao{
@@ -25,7 +24,6 @@ public class DeveloperDaoImpl implements DeveloperDao{
         Session session = this.sessionFactory.getCurrentSession();
         session.persist(developer);
         logger.info("Developer successfully saved. Developer details: " + developer);
-        session.close();
     }
 
     @Override
@@ -33,7 +31,6 @@ public class DeveloperDaoImpl implements DeveloperDao{
         Session session = this.sessionFactory.getCurrentSession();
         session.update(developer);
         logger.info("Developer successfully updated. Developer details: " + developer);
-        session.close();
     }
 
     @Override
@@ -45,7 +42,6 @@ public class DeveloperDaoImpl implements DeveloperDao{
             session.delete(developer);
         }
         logger.info("Developer successfully removed. Developer details: " + developer);
-        session.close();
     }
 
     @Override
@@ -54,7 +50,6 @@ public class DeveloperDaoImpl implements DeveloperDao{
         Developer developer = (Developer) session.load(Developer.class, new Integer(id));
 
         logger.info("Developer successfully loaded. Developer details: " + developer);
-        session.close();
         return developer;
     }
 
@@ -67,8 +62,6 @@ public class DeveloperDaoImpl implements DeveloperDao{
         for (Developer developer : listDeveloper){
             logger.info("Developer list: " + developer);
         }
-
-        session.close();
         return listDeveloper;
     }
 }

@@ -1,7 +1,7 @@
-package service;
+package developermanager.service;
 
-import dao.DeveloperDao;
-import model.Developer;
+import developermanager.dao.DeveloperDao;
+import developermanager.model.Developer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

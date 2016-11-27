@@ -1,10 +1,10 @@
-package service;
+package developermanager.dao;
 
-import model.Developer;
+import developermanager.model.Developer;
 
 import java.util.List;
 
-public interface DeveloperService {
+public interface DeveloperDao {
 
     public void addDeveloper(Developer developer);
 

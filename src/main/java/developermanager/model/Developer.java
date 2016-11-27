@@ -1,6 +1,7 @@
-package model;
+package developermanager.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "DEVELOPERS")
@@ -22,6 +23,9 @@ public class Developer {
 
     @Column(name = "EXPERIENCE")
     private int experience;
+
+    @ManyToMany(mappedBy = "DEVELOPERS")
+    protected Set<Project> projects;
 
     public int getId() {
         return id;
@@ -62,7 +66,15 @@ public class Developer {
     public void setExperience(int experience) {
         this.experience = experience;
     }
+/*
+    public Set<Project> getProjects() {
+        return projects;
+    }
 
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
+    }
+*/
     @Override
     public String toString() {
         return "Developer{" +

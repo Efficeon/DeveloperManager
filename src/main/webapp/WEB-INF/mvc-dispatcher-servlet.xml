@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
@@ -7,9 +6,10 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+    <context:component-scan base-package="developermanager"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/"/>
+        <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
@@ -29,7 +29,8 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
-                <value>model.Developer</value>
+                <value>developermanager.model.Project</value>
+                <value>developermanager.model.Developer</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -41,12 +42,21 @@
         </property>
     </bean>
 
-    <bean id="developerDao" class="dao.DeveloperDaoImpl">
+
+    <bean id="developerDao" class="developermanager.dao.DeveloperDaoImpl">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
 
-    <bean id="developerService" class="service.DeveloperServiceImpl">
+    <bean id="developerService" class="developermanager.service.DeveloperServiceImpl">
         <property name="developerDao" ref="developerDao"/>
+    </bean>
+
+    <bean id="projectDao" class="developermanager.dao.ProjectDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="projectService" class="developermanager.service.ProjectServiceImpl">
+        <property name="projectDao" ref="projectDao"/>
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>

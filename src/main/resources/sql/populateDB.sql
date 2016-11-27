@@ -8,3 +8,10 @@ INSERT INTO DEVELOPERMANAGER.DEVELOPERS (ID, NAME, SKILL, SALARY, EXPERIENCE)
                                  VALUES ('4', 'Dev4', 'JS', '4300', '4');
 INSERT INTO DEVELOPERMANAGER.DEVELOPERS (ID, NAME, SKILL, SALARY, EXPERIENCE)
                                  VALUES ('5', 'Dev5', 'HTML', '1000', '5');
+
+INSERT INTO DEVELOPERMANAGER.PROJECTS (ID, NAME)
+                               VALUES ('1', 'PRoject_1');
+INSERT INTO DEVELOPERMANAGER.PROJECTS (ID, NAME)
+                               VALUES ('2', 'PRoject_2');
+INSERT INTO DEVELOPERMANAGER.PROJECTS (ID, NAME)
+                               VALUES ('3', 'PRoject_3');

@@ -13,3 +13,5 @@
 out/*
 target/*
 
+Будет удалено src/main/java/developermanager/model/Project.java
+Будет удалено src/test/

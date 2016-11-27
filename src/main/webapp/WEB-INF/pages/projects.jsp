@@ -6,9 +6,10 @@
 
 <html>
 <head>
-    <title>Developers Page</title>
+    <title>Projects Page</title>
 
     <style type="text/css">
+
         .tg {
             border-collapse: collapse;
             border-spacing: 0;
@@ -47,7 +48,6 @@
         }
     </style>
 </head>
-
 <body>
 
 <a href="../../index.jsp">Back to main menu</a>
@@ -55,48 +55,46 @@
 <br/>
 <br/>
 
-<h1>Developers List</h1>
+<h1>Projects List</h1>
 
 <input type="search" name="search" placeholder="Search"/>
 <input type="submit" value="Search">
 <br/>
 <br/>
 
-<c:if test="${!empty listDevelopers}">
+
+<c:if test="${!empty listProjects}">
     <table class="tg">
         <tr>
             <th width="80">ID</th>
             <th width="120">Name</th>
-            <th width="120">Skill</th>
-            <th width="120">Salary</th>
-            <th width="120">Experience</th>
+            <th width="120">Developers</th>
             <th width="60">Edit</th>
             <th width="60">Delete</th>
+            <th width="120">Add developers</th>
 
         </tr>
-        <c:forEach items="${listDevelopers}" var="developer">
+        <c:forEach items="${listProjects}" var="project">
             <tr>
-                <td>${developer.id}</td>
-                <td><a href="<c:url value='/developerdata/${developer.id}' />" target="_blank">${developer.name}</a></td>
-                <td>${developer.name}</td>
-                <td>${developer.skill}</td>
-                <td>${developer.salary}</td>
-                <td>${developer.experience}</td>
-                <td><a href="<c:url value='/edit/${developer.id}' />">Edit</a></td>
-                <td><a href="<c:url value='/remove/${developer.id}' />">Delete</a></td>
+                <td>${project.id}</td>
+                <td><a href="<c:url value='/projectdata/${project.id}' />" target="_blank">${project.name}</a></td>
+                <td>${project.id}</td>
+                <td><a href="<c:url value='/edit/${project.id}' />">Edit</a></td>
+                <td><a href="<c:url value='/remove/${project.id}' />">Delete</a></td>
+                <td><a href="<c:url value='/add/${project.id}' />">Add developers</a></td>
 
             </tr>
         </c:forEach>
     </table>
 </c:if>
 
-<h1>Add a Developer</h1>
+<h1>Add a Project</h1>
 
-<c:url var="addAction" value="/developers/add"/>
+<c:url var="addAction" value="/projects/add"/>
 
-<form:form action="${addAction}" commandName="developer">
+<form:form action="${addAction}" commandName="project">
     <table>
-        <c:if test="${!empty developer.name}">
+        <c:if test="${!empty project.name}">
             <tr>
                 <td>
                     <form:label path="id">
@@ -119,40 +117,26 @@
                 <form:input path="name"/>
             </td>
         </tr>
-        <tr>
-            <td>
-                <form:label path="skill">
-                    <spring:message text="Skill"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="skill"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <form:label path="salary">
-                    <spring:message text="Salary"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="salary"/>
-            </td>
-        </tr>
+
 
         <tr>
             <td colspan="2">
-                <c:if test="${!empty developer.name}">
+                <c:if test="${!empty project.name}">
                     <input type="submit"
-                           value="<spring:message text="Edit Developer"/>"/>
+                           value="<spring:message text="Edit Project"/>"/>
                 </c:if>
-                <c:if test="${empty developer.name}">
+                <c:if test="${empty project.name}">
                     <input type="submit"
-                           value="<spring:message text="Add Developer"/>"/>
+                           value="<spring:message text="Add Project"/>"/>
+                </c:if>
+                <c:if test="${empty project.name}">
+                    <input type="submit"
+                           value="<spring:message text="Add developers"/>"/>
                 </c:if>
             </td>
         </tr>
     </table>
 </form:form>
+
 </body>
 </html>

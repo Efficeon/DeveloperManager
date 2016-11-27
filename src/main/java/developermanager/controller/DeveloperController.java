@@ -1,6 +1,6 @@
-package controller;
+package developermanager.controller;
 
-import model.Developer;
+import developermanager.model.Developer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import service.DeveloperService;
+import developermanager.service.DeveloperService;
 
 @Controller
 public class DeveloperController {
@@ -23,7 +23,7 @@ public class DeveloperController {
        this.developerService = developerService;
    }
 
-   @RequestMapping(value = "/developers", method = RequestMethod.GET)
+   @RequestMapping(value = "developers", method = RequestMethod.GET)
    public String listDevelopers(Model model){
        model.addAttribute("developer", new Developer());
        model.addAttribute("listDevelopers", this.developerService.listDevelopers());
@@ -42,14 +42,14 @@ public class DeveloperController {
         return "redirect:/developers";
    }
 
-   @RequestMapping("/remove/{id}")
+   @RequestMapping("/removeDeveloper/{id}")
    public String removeDeveloper(@PathVariable("id") int id){
        this.developerService.removeDeveloper(id);
 
        return "redirect:/developers";
    }
 
-   @RequestMapping("edit/{id}")
+   @RequestMapping("editDeveloper/{id}")
    public String editDeveloper(@PathVariable("id") int id, Model model){
        model.addAttribute("developer", this.developerService.getDeveloperById(id));
        model.addAttribute("listDevelopers", this.developerService.listDevelopers());
