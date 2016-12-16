@@ -78,17 +78,18 @@
             <tr>
                 <td>${project.id}</td>
                 <td><a href="<c:url value='/projectdata/${project.id}' />" target="_blank">${project.name}</a></td>
-                <td>${project.id}</td>
+                <td>${project.developers}</td>
                 <td><a href="<c:url value='/edit/${project.id}' />">Edit</a></td>
                 <td><a href="<c:url value='/remove/${project.id}' />">Delete</a></td>
                 <td><a href="<c:url value='/add/${project.id}' />">Add developers</a></td>
-
             </tr>
         </c:forEach>
     </table>
 </c:if>
 
-<h1>Add a Project</h1>
+<!---------------------------------------------------------------------------------------------->
+
+<h3>Add a Project</h3>
 
 <c:url var="addAction" value="/projects/add"/>
 
@@ -107,6 +108,7 @@
                 </td>
             </tr>
         </c:if>
+
         <tr>
             <td>
                 <form:label path="name">
@@ -118,6 +120,20 @@
             </td>
         </tr>
 
+        <tr>
+            <td>
+                <form:label path="developers">
+                    <spring:message text="Developers"/>
+                </form:label>
+            </td>
+            <td>
+                <form:select path="developers">
+                    <option value="3">Select developer</option>
+                    <c:forEach items="${listDevelopers}" var="developers">
+                     </c:forEach>
+                </form:select>
+            </td>
+        </tr>
 
         <tr>
             <td colspan="2">
@@ -137,6 +153,27 @@
         </tr>
     </table>
 </form:form>
+
+<!----------------------------------------------------------------------------------------------->
+
+<h3>Add a Developer in Project</h3>
+<c:url var="addAction" value="/projects/developeradd"/>
+<table>
+    <tr><th width="80" class="warning">developerID</th></tr>
+
+    <tr><th width="80" class="warning">projectID</th></tr>
+    <tr>
+        <td>
+            <form:label path="projectID">
+                <spring:message text="projectID"/>
+            </form:label>
+        </td>
+        <td>
+            <form:input path="projectID"/>
+        </td>
+    </tr>
+</table>
+
 
 </body>
 </html>

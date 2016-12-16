@@ -2,100 +2,71 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=Cp1251" pageEncoding="Cp1251"%>
 <%@ page session="false" %>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
 
 <html>
 <head>
-    <title>Developers Page</title>
+    <title>Разработчики</title>
+    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap Core CSS -->
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 
-    <style type="text/css">
-        .tg {
-            border-collapse: collapse;
-            border-spacing: 0;
-            border-color: #ccc;
-        }
-
-        .tg td {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            padding: 10px 5px;
-            border-style: solid;
-            border-width: 1px;
-            overflow: hidden;
-            word-break: normal;
-            border-color: #ccc;
-            color: #333;
-            background-color: #fff;
-        }
-
-        .tg th {
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            font-weight: normal;
-            padding: 10px 5px;
-            border-style: solid;
-            border-width: 1px;
-            overflow: hidden;
-            word-break: normal;
-            border-color: #ccc;
-            color: #333;
-            background-color: #f0f0f0;
-        }
-
-        .tg .tg-4eph {
-            background-color: #f9f9f9
-        }
-    </style>
 </head>
-
 <body>
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"/-->
+<!--script src="/WEB-INF/pages/bootstrap-3.3.5-dist/js/bootstrap.min.js"/-->
 
-<a href="../../index.jsp">Back to main menu</a>
+<a href="../../index.jsp">Назад в меню</a>
 
 <br/>
 <br/>
 
-<h1>Developers List</h1>
+<h2>Разработчики</h2>
 
 <input type="search" name="search" placeholder="Search"/>
 <input type="submit" value="Search">
-<br/>
-<br/>
 
 <c:if test="${!empty listDevelopers}">
-    <table class="tg">
-        <tr>
-            <th width="80">ID</th>
-            <th width="120">Name</th>
-            <th width="120">Skill</th>
-            <th width="120">Salary</th>
-            <th width="120">Experience</th>
-            <th width="60">Edit</th>
-            <th width="60">Delete</th>
 
+    <table class="table table-striped" background-color: #f9f9f9>
+        <tr>
+            <th width="80" class="warning">ID</th>
+            <th width="120" class="danger">Имя</th>
+            <th width="120" class="danger">Проекты</th>
+            <th width="120">Навыки</th>
+            <th width="120">Зарплата</th>
+            <th width="120">Стаж</th>
+            <th width="60">Изменить</th>
+            <th width="60">Удалить</th>
         </tr>
+
         <c:forEach items="${listDevelopers}" var="developer">
             <tr>
                 <td>${developer.id}</td>
-                <td><a href="<c:url value='/developerdata/${developer.id}' />" target="_blank">${developer.name}</a></td>
+                <td>${developer.name}</td>
+                <td>${developer.projects}</td>
                 <td>${developer.skill}</td>
                 <td>${developer.salary}</td>
                 <td>${developer.experience}</td>
                 <td><a href="<c:url value='/editDeveloper/${developer.id}' />">Edit</a></td>
                 <td><a href="<c:url value='/removeDeveloper/${developer.id}' />">Delete</a></td>
-
             </tr>
         </c:forEach>
-    </table>
+</table>
 </c:if>
 
-<h1>Add a Developer</h1>
+<h1>Добавить разработчика</h1>
 
 <c:url var="addAction" value="/developers/add"/>
 
 <form:form action="${addAction}" commandName="developer">
-    <table>
+<table class="table">
         <c:if test="${!empty developer.name}">
+            <table class="table table-striped">
             <tr>
                 <td>
                     <form:label path="id">
@@ -143,15 +114,18 @@
             <td colspan="2">
                 <c:if test="${!empty developer.name}">
                     <input type="submit"
-                           value="<spring:message text="Edit Developer"/>"/>
+                           value="<spring:message text="Изменить данные"/>"/>
                 </c:if>
                 <c:if test="${empty developer.name}">
                     <input type="submit"
-                           value="<spring:message text="Add Developer"/>"/>
+                           value="<spring:message text="Добавить"/>"/>
                 </c:if>
             </td>
         </tr>
-    </table>
+</table>
 </form:form>
+<script src="/WEB-INF/pages/js/bootstrap.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+            <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>

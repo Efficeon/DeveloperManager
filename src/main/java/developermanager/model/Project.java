@@ -15,10 +15,10 @@ public class Project{
     @Column(name= "NAME")
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "PROJECTS_DEVELOPERS", joinColumns = @JoinColumn(name = "projectID"),
             inverseJoinColumns = @JoinColumn(name = "developerID"))
-    private Set<Developer> developers;
+    private Set<Developer> developersInProject;
 
     public int getId() {
         return projectID;
@@ -37,11 +37,11 @@ public class Project{
     }
 
     public Set<Developer> getDevelopers() {
-        return developers;
+        return developersInProject;
     }
 
-    public void setDevelopers(Set<Developer> developers) {
-        this.developers = developers;
+    public void setDevelopers(Set<Developer> developersInProject) {
+        this.developersInProject = developersInProject;
     }
 
     @Override

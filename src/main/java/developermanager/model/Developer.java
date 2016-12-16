@@ -24,8 +24,8 @@ public class Developer {
     @Column(name = "EXPERIENCE")
     private int experience;
 
-    @ManyToMany(mappedBy = "DEVELOPERS")
-    protected Set<Project> projects;
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "developersInProject")
+    private Set<Project> projectsDeveloper;
 
     public int getId() {
         return id;
@@ -68,21 +68,15 @@ public class Developer {
     }
 
     public Set<Project> getProjects() {
-        return projects;
+        return projectsDeveloper;
     }
 
-    public void setProjects(Set<Project> projects) {
-        this.projects = projects;
+    public void setProjects(Set<Project> projectsDeveloper) {
+        this.projectsDeveloper = projectsDeveloper;
     }
 
     @Override
     public String toString() {
-        return "Developer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", skill='" + skill + '\'' +
-                ", salary=" + salary +
-                ", experience=" + experience +
-                '}';
+        return "name" + " " + id +"\n";
     }
 }

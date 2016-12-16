@@ -6,10 +6,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Set;
 
+@Repository
 public class ProjectDaoImpl implements ProjectDao{
     private static final Logger logger = LoggerFactory.getLogger(DeveloperDaoImpl.class);
     private Set<Developer> developers = null;
@@ -37,14 +39,27 @@ public class ProjectDaoImpl implements ProjectDao{
     public void addDeveloper(int developerID, int projectID) {
         Session session = this.sessionFactory.getCurrentSession();
         Project project = (Project) session.load(Project.class, projectID);
-        //developers = project.getDevelopers();
+        developers = project.getDevelopers();
 
         DeveloperDaoImpl developerDao = new DeveloperDaoImpl();
         developers.add(developerDao.getDeveloperById(developerID));
-        //project.setDevelopers(developers);
+        project.setDevelopers(developers);
         session.update(project);
     }
 
+    //public void addDeveloper(int teamID, int developerID){
+        //Session session = ConnectDao.sessionFactory.openSession();
+        //Transaction transaction = session.beginTransaction();
+        //Team team = (Team) session.get(Team.class, teamID);
+        //developers = team.getDevelopers();
+        //developerDao = new DeveloperDao();
+        //developers.add(developerDao.readingDevelopers(developerID));
+        //team.setDevelopers(developers);
+        //session.update(team);
+        //transaction.commit();
+        //logger.info("Add developer: " + team.getName());
+        //session.close();
+    //}
     @Override
     public void removeProject(int id) {
         Session session = this.sessionFactory.getCurrentSession();
@@ -76,4 +91,6 @@ public class ProjectDaoImpl implements ProjectDao{
         }
         return listProject;
     }
+
+
 }

@@ -16,7 +16,6 @@ public class DeveloperController {
 
    private DeveloperService developerService;
 
-
    @Autowired(required = true)
    @Qualifier(value = "developerService")
    public void setDeveloperService(DeveloperService developerService) {
@@ -45,7 +44,6 @@ public class DeveloperController {
    @RequestMapping("/removeDeveloper/{id}")
    public String removeDeveloper(@PathVariable("id") int id){
        this.developerService.removeDeveloper(id);
-
        return "redirect:/developers";
    }
 

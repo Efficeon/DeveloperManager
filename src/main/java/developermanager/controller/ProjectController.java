@@ -2,6 +2,7 @@ package developermanager.controller;
 
 import developermanager.model.Developer;
 import developermanager.model.Project;
+import developermanager.service.DeveloperService;
 import developermanager.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class ProjectController {
 
-    private ProjectService projectService;
+    public ProjectService projectService;
+    public DeveloperService developerService;
 
 
     @Autowired(required = true)
@@ -56,9 +58,18 @@ public class ProjectController {
         return "projects";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addDeveloper(@RequestParam("idDev") int idDev, @RequestParam("idProj") int idProj){
-        this.projectService.addDeveloper(idDev, idProj);
+    /*@RequestMapping("developeradd/{developerID}{projectID}")
+    public String addDeveloper1(@PathVariable("developerID") int developerID,
+                              @PathVariable("projectID") int projectID){
+        this.projectService.addDeveloper(developerID, projectID);
+
+        return "redirect:/projects";
+    }*/
+
+    @RequestMapping(value = "/projects/developeradd", method = RequestMethod.GET)
+    public String addDeveloper(@RequestParam("developerID") int developerID,
+                               @RequestParam("projectID") int projectID){
+        this.projectService.addDeveloper(developerID, projectID);
 
        return "redirect:/projects";
     }
